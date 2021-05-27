@@ -10,6 +10,6 @@
 <ul th:each="product : ${products}">
     <li><a th:href="'/' + ${product.id}" th:text="${product.title} + ' - ' + ${product.cost}"/></li>
 </ul>
-<a href="/product/addProduct">Add product</a>
+<a href="/addProduct">Add product</a>
 </body>
 </html>

@@ -6,16 +6,17 @@
 </head>
 <html>
 <body>
-<!--<form:form action="processForm" modelAttribute="product">-->
-<!--    <form:hidden path="id"/>-->
-<!--    Title: <form:input path="title"/>-->
-<!--    <br>-->
-<!--    Cost: <form:input path="cost"/>-->
-<!--    <br>-->
-<!--    <input type="submit" value="Submit"/>-->
-<!--</form:form>-->
+
+<form th:action="@{/processForm}" method="post" th:object="${product}">
+    <input th:field="*{id}" type="hidden" path="id"/>
+    Title: <input th:field="*{title}" placeholder="Title (*)" />
+    <br>
+    Cost: <input th:field="*{cost}" placeholder="Cost (*)" />
+    <br>
+    <input type="submit" value="Add product"/>
+</form>
 <br>
-<a href="/product/">Return to list products</a>
+<a href="/">Cancel & Return to list products</a>
 
 </body>
 </html>

@@ -3,9 +3,7 @@ package ru.geekbrains.springbootdemo.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import ru.geekbrains.springbootdemo.enities.Product;
 import ru.geekbrains.springbootdemo.service.ProductService;
 
@@ -21,7 +19,7 @@ public class MainAppController {
         this.productsService = productsService;
     }
 
-    @GetMapping("")
+    @GetMapping("/")
     public String showAllProducts(Model model) {
         List<Product> products = productsService.getProductsList();
         model.addAttribute("products", products);
@@ -33,5 +31,17 @@ public class MainAppController {
         Product product = productsService.getProductById(id);
         model.addAttribute("product", product);
         return "product";
+    }
+
+    @RequestMapping("/addProduct")
+    public String showSimpleForm(Model uiModel) {
+        uiModel.addAttribute("product", new Product());
+        return "product-form";
+    }
+
+    @PostMapping("/processForm")
+    public String processForm(@ModelAttribute("product") Product product) {
+        productsService.addProductToRepository(product);
+        return "redirect:/";
     }
 }
