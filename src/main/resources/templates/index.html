@@ -7,7 +7,9 @@
 <body>
 <h1>All Products list</h1>
 
-<p th:text="${products.title}+ ' ' + ${products.cost}"/>
-
+<ul th:each="product : ${products}">
+    <li><a th:href="'/' + ${product.id}" th:text="${product.title} + ' - ' + ${product.cost}"/></li>
+</ul>
+<a href="/product/addProduct">Add product</a>
 </body>
 </html>
