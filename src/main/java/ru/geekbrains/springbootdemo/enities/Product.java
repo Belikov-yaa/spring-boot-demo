@@ -41,6 +41,14 @@ public class Product {
 //        this.cost = cost;
 //    }
 
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
     public Product(int id, String title, int price) {
         this.id = id;
         this.title = title;

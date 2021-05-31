@@ -15,12 +15,12 @@ public class ProductsRepository {
 
     //    @Autowired
     public ProductsRepository() {
-        products.add(new Product(++count, "Potato", 3.40));
-        products.add(new Product(++count, "Tomato", 5.60));
-        products.add(new Product(++count, "Milk", 2.15));
-        products.add(new Product(++count, "Bread", 1.60));
-        products.add(new Product(++count, "Meat", 6.66));
-        products.add(new Product(++count, "Cracker", 2.56));
+//        products.add(new Product(++count, "Potato", 3.40));
+//        products.add(new Product(++count, "Tomato", 5.60));
+//        products.add(new Product(++count, "Milk", 2.15));
+//        products.add(new Product(++count, "Bread", 1.60));
+//        products.add(new Product(++count, "Meat", 6.66));
+//        products.add(new Product(++count, "Cracker", 2.56));
     }
 
     public List<Product> getProducts() {
@@ -46,7 +46,7 @@ public class ProductsRepository {
             for (Product productInList : products) {
                 if(product.getId() == productInList.getId()) {
                     productInList.setTitle(product.getTitle());
-                    productInList.setCost(product.getCost());
+                    productInList.setPrice(product.getPrice());
                 }
             }
         }
