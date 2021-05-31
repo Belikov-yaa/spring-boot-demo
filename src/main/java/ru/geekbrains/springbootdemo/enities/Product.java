@@ -1,9 +1,21 @@
 package ru.geekbrains.springbootdemo.enities;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "product")
 public class Product {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
+
+    @Column(name = "title")
     private String title;
-    private double cost;
+
+    @Column(name = "price")
+//    private double cost;
+    private int price;
 
     public int getId() {
         return id;
@@ -21,23 +33,25 @@ public class Product {
         this.title = title;
     }
 
-    public double getCost() {
-        return cost;
-    }
+//    public double getCost() {
+//        return cost;
+//    }
+//
+//    public void setCost(double cost) {
+//        this.cost = cost;
+//    }
 
-    public void setCost(double cost) {
-        this.cost = cost;
-    }
-
-    public Product(int id, String title, double cost) {
+    public Product(int id, String title, int price) {
         this.id = id;
         this.title = title;
-        this.cost = cost;
+//        this.cost = cost;
+        this.price = price;
     }
 
-    public Product(String title, double cost) {
+    public Product(String title, int price) {
         this.title = title;
-        this.cost = cost;
+//        this.cost = cost;
+        this.price = price;
     }
 
     public Product() {}
