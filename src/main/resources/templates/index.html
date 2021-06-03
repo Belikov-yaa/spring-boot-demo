@@ -7,8 +7,10 @@
 <body>
 <h1>All Products list</h1>
 
+<div th:replace="~{fragments/pager :: pager}"/>
+
 <ul th:each="product : ${products}">
-    <li><a th:href="'/' + ${product.id}" th:text="${product.title} + ' - ' + ${product.cost}"/></li>
+    <li><a th:href="'/' + ${product.id}" th:text="${product.title} + ' - ' + ${product.price}"/></li>
 </ul>
 <a href="/addProduct">Add product</a>
 </body>

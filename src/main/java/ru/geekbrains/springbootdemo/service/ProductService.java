@@ -1,12 +1,11 @@
 package ru.geekbrains.springbootdemo.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import ru.geekbrains.springbootdemo.enities.Product;
 import ru.geekbrains.springbootdemo.repositories.ProductJpaRepository;
-import ru.geekbrains.springbootdemo.repositories.ProductsRepository;
-
-import java.util.List;
 
 @Service
 public class ProductService {
@@ -26,11 +25,11 @@ public class ProductService {
         return productsRepository.findProductById(id);
     }
 
-    public List<Product> getProductsList() {
-        return productsRepository.findAllByOrderByTitleAsc();
+    public Page<Product> getProductsList(Pageable pageable) {
+        return productsRepository.findAllByOrderByTitleAsc(pageable);
     }
 
     public void addProductToRepository(Product product) {
-        productsRepository.addProductToList(product);
+        productsRepository.saveAndFlush(product);
     }
 }

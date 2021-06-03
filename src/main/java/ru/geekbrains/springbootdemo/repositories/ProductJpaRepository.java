@@ -19,6 +19,4 @@ public interface ProductJpaRepository extends JpaRepository<Product, Integer> {
 
     Page<Product> findAllByPriceBetweenOrderByTitleAsc(Pageable pageable, int min, int max);
 
-    void
-
 }
