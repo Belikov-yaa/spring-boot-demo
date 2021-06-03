@@ -1,12 +1,10 @@
 package ru.geekbrains.springbootdemo.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.geekbrains.springbootdemo.dao.ProductsDAO;
 import ru.geekbrains.springbootdemo.enities.Product;
-import ru.geekbrains.springbootdemo.service.ProductService;
 
 import java.util.List;
 
