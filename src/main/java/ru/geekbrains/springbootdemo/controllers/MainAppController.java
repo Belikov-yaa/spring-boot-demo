@@ -24,12 +24,16 @@ public class MainAppController {
     @GetMapping("/")
     public String showAllProducts(
             Model model,
-            @PageableDefault(sort = {"title"}, direction = Sort.Direction.ASC) Pageable pageable
+            @RequestParam(name = "min", required = false) Integer min,
+            @RequestParam(name = "max", required = false) Integer max,
+            @PageableDefault(sort = {"title"}, size = 5, direction = Sort.Direction.ASC) Pageable pageable
     ) {
-        Page<Product> products = productsService.getProductsList(pageable);
+        Page<Product> products = productsService.getProductsList(pageable, min, max);
         PageWrapper<Product> page = new PageWrapper<>(products, "/");
         model.addAttribute("products", products.getContent());
         model.addAttribute("page", page);
+        model.addAttribute("page", min);
+        model.addAttribute("page", max);
         return "index";
     }
 
