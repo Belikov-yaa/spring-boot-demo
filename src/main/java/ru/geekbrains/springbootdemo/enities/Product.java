@@ -21,10 +21,6 @@ public class Product {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getTitle() {
         return title;
     }
@@ -32,14 +28,6 @@ public class Product {
     public void setTitle(String title) {
         this.title = title;
     }
-
-//    public double getCost() {
-//        return cost;
-//    }
-//
-//    public void setCost(double cost) {
-//        this.cost = cost;
-//    }
 
     public int getPrice() {
         return price;
@@ -52,13 +40,11 @@ public class Product {
     public Product(int id, String title, int price) {
         this.id = id;
         this.title = title;
-//        this.cost = cost;
         this.price = price;
     }
 
     public Product(String title, int price) {
         this.title = title;
-//        this.cost = cost;
         this.price = price;
     }
 

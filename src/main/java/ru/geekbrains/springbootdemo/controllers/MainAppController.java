@@ -32,8 +32,8 @@ public class MainAppController {
         PageWrapper<Product> page = new PageWrapper<>(products, "/");
         model.addAttribute("products", products.getContent());
         model.addAttribute("page", page);
-        model.addAttribute("page", min);
-        model.addAttribute("page", max);
+        model.addAttribute("min", min);
+        model.addAttribute("max", max);
         return "index";
     }
 

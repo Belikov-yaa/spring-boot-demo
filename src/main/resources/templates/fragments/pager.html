@@ -17,7 +17,7 @@
         <div class="col-sm-7">
             <!-- Pagination Bar -->
             <div th:fragment='paginationbar'>
-                <div class="text-center">
+
                     <ul class='pagination pagination-centered'>
                         <li th:class="${page.firstPage}?'disabled':''">
                             <span th:if='${page.firstPage}'>← First</span>
@@ -48,7 +48,7 @@
                                th:href='@{${page.url}(page=${page.totalPages - 1},size=${page.size})}'>Last →</a>
                         </li>
                     </ul>
-                </div>
+
             </div>
         </div>
     </div>
