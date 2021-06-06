@@ -23,25 +23,25 @@ public class ProductDAOAppController {
     public String showAllProducts(Model model) {
         List<Product> products = productsDAO.findAll();
         model.addAttribute("products", products);
-        return "index";
+        return "dao/index";
     }
 
     @GetMapping("/{id}")
     public String showProductById(Model model, @PathVariable(name = "id") Long id) {
         Product product = productsDAO.findById(id);
         model.addAttribute("product", product);
-        return "product";
+        return "dao/product";
     }
 
     @RequestMapping("/addProduct")
     public String showSimpleForm(Model model) {
         model.addAttribute("product", new Product());
-        return "product-form";
+        return "dao/product-form";
     }
 
     @PostMapping("/processForm")
     public String processForm(@ModelAttribute("product") Product product) {
-        productsDAO.saveOrUpdate(product);
-        return "redirect:/";
+        productsDAO.save(product);
+        return "redirect:/dao";
     }
 }

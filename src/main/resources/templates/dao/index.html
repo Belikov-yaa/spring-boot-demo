@@ -9,8 +9,8 @@
 <h1>All Products list</h1>
 
 <ul th:each="product : ${products}">
-    <li><a th:href="@{/{id}(id=${product.getId()})}" th:text="${product.title} + ' - ' + ${product.price}"/></li>
+    <li><a th:href="@{/dao/{id}(id=${product.id})}" th:text="${product.getTitle()} + ' - ' + ${product.price}"/></li>
 </ul>
-<a href="/addProduct">Add product</a>
+<a href="/dao/addProduct">Add product</a>
 </body>
 </html>

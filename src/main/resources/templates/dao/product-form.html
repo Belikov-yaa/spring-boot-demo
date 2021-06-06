@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>New product form</title>
+</head>
+<html>
+<body>
+
+<form th:action="@{/dao/processForm}" method="post" th:object="${product}">
+    <input th:field="*{id}" type="hidden" path="id"/>
+    Title: <input th:field="*{title}" placeholder="Title (*)" />
+    <br>
+    Cost: <input th:field="*{price}" placeholder="Cost (*)" />
+    <br>
+    <input type="submit" value="Add product"/>
+</form>
+<br>
+<a href="/dao">Cancel & Return to list products</a>
+
+</body>
+</html>

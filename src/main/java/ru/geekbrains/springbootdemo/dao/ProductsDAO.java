@@ -11,10 +11,14 @@ import java.util.List;
 
 @Component
 public class ProductsDAO {
-    private final SessionFactory factory;
+    private SessionFactory factory;
     private Session session;
 
-    public  ProductsDAO() {
+    public ProductsDAO() {
+    }
+
+    @PostConstruct
+    public void init() {
         factory = new Configuration()
 //                .configure("hibernate.cfg.xml")
                 .addAnnotatedClass(Product.class)
@@ -23,6 +27,7 @@ public class ProductsDAO {
     }
 
     public Product findById(Long id) {
+        session = factory.getCurrentSession();
         session.beginTransaction();
         Product productFromDB = session.get(Product.class, id);
         session.getTransaction().commit();
@@ -30,6 +35,7 @@ public class ProductsDAO {
     }
 
     public List<Product> findAll() {
+        session = factory.getCurrentSession();
         session.beginTransaction();
         List<Product> products = session.createQuery("SELECT i FROM Product i", Product.class).getResultList();
         session.getTransaction().commit();
@@ -43,15 +49,22 @@ public class ProductsDAO {
         session.getTransaction().commit();
     }
 
-    public Product saveOrUpdate(Product product) {
+    public Product save(Product product) {
+        session.beginTransaction();
+        session.save(product);
+        session.getTransaction().commit();
+        return product;
+    }
+
+    public Product update(Product product) {
         session.beginTransaction();
         Product productFromDB = session.get(Product.class, product.getId());
         if (productFromDB != null) {
             productFromDB.setPrice(product.getPrice());
             productFromDB.setTitle(product.getTitle());
-        } else
             session.save(product);
-        session.getTransaction().commit();
-        return productFromDB;
+            session.getTransaction().commit();
+        }
+        return product;
     }
 }

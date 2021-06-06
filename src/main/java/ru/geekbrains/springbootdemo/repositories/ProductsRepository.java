@@ -40,7 +40,7 @@ public class ProductsRepository {
 
     public void addProductToList(Product product) {
         if (product.getId() == 0) {
-            product.setId(++count);
+//            product.setId(++count);
             products.add(product);
         } else {
             for (Product productInList : products) {
