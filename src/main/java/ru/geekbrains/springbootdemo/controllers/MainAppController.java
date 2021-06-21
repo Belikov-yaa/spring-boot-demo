@@ -29,7 +29,7 @@ public class MainAppController {
             @PageableDefault(sort = {"title"}, size = 5, direction = Sort.Direction.ASC) Pageable pageable) {
 
         Page<Product> products = productsService.getProductsList(pageable, min, max);
-        PageWrapper<Product> page = new PageWrapper<>(products, "/");
+        PageWrapper<Product> page = new PageWrapper<>(products, "/index");
         model.addAttribute("products", products.getContent());
         model.addAttribute("page", page);
         model.addAttribute("min", min);
@@ -43,7 +43,7 @@ public class MainAppController {
     }
 
     @GetMapping("/{id}")
-    public String showProductById(Model model, @PathVariable(name = "id") int id) {
+    public String showProductById(Model model, @PathVariable(name = "id") Long id) {
         Product product = productsService.getProductById(id);
         model.addAttribute("product", product);
         return "product";
