@@ -8,11 +8,11 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import ru.geekbrains.springbootdemo.enities.Product;
+import ru.geekbrains.springbootdemo.entities.Product;
 import ru.geekbrains.springbootdemo.service.ProductService;
+import ru.geekbrains.springbootdemo.utils.PageWrapper;
 
 @Controller
-//@RequestMapping("/product")
 public class MainAppController {
     private ProductService productsService;
 
@@ -21,13 +21,13 @@ public class MainAppController {
         this.productsService = productsService;
     }
 
-    @GetMapping("/")
+    @GetMapping("/index")
     public String showAllProducts(
             Model model,
             @RequestParam(name = "min", required = false) Integer min,
             @RequestParam(name = "max", required = false) Integer max,
-            @PageableDefault(sort = {"title"}, size = 5, direction = Sort.Direction.ASC) Pageable pageable
-    ) {
+            @PageableDefault(sort = {"title"}, size = 5, direction = Sort.Direction.ASC) Pageable pageable) {
+
         Page<Product> products = productsService.getProductsList(pageable, min, max);
         PageWrapper<Product> page = new PageWrapper<>(products, "/");
         model.addAttribute("products", products.getContent());
@@ -35,6 +35,11 @@ public class MainAppController {
         model.addAttribute("min", min);
         model.addAttribute("max", max);
         return "index";
+    }
+
+    @GetMapping("/login")
+    public String login() {
+        return "login";
     }
 
     @GetMapping("/{id}")
