@@ -1,33 +1,42 @@
 package ru.geekbrains.springbootdemo.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import ru.geekbrains.springbootdemo.enities.Product;
-import ru.geekbrains.springbootdemo.repositories.ProductsRepository;
-
-import java.util.List;
+import ru.geekbrains.springbootdemo.repositories.ProductJpaRepository;
 
 @Service
 public class ProductService {
-    private ProductsRepository productsRepository;
+    //    private ProductsRepository productsRepository;
+    private ProductJpaRepository productsRepository;
+
 
     @Autowired
-    public void setProductsRepository(ProductsRepository productsRepository) {
-        this.productsRepository = productsRepository;
+    public void setProductsRepository(ProductJpaRepository productsJpaRepository) {
+        this.productsRepository = productsJpaRepository;
     }
 
     public ProductService() {
     }
 
     public Product getProductById(int id) {
-        return productsRepository.getProductByID(id);
+        return productsRepository.findProductById(id);
     }
 
-    public List<Product> getProductsList() {
-        return productsRepository.getProducts();
+    public Page<Product> getProductsList(Pageable pageable, Integer min, Integer max) {
+        if (min != null && max != null && min <= max)
+            return productsRepository.findAllByPriceBetweenOrderByTitleAsc(pageable, min, max);
+        else if (min == null && max != null && max > 0)
+            return productsRepository.findAllByPriceBeforeOrderByTitleAsc(pageable, max);
+        else if (max == null && min != null && min > 0)
+            return productsRepository.findAllByPriceAfterOrderByTitleAsc(pageable, min);
+        else
+            return productsRepository.findAllByOrderByTitleAsc(pageable);
     }
 
     public void addProductToRepository(Product product) {
-        productsRepository.addProductToList(product);
+        productsRepository.saveAndFlush(product);
     }
 }
