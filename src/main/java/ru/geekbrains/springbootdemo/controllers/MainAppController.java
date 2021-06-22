@@ -21,7 +21,7 @@ public class MainAppController {
         this.productsService = productsService;
     }
 
-    @GetMapping("/index")
+    @GetMapping("/")
     public String showAllProducts(
             Model model,
             @RequestParam(name = "min", required = false) Integer min,
@@ -29,7 +29,7 @@ public class MainAppController {
             @PageableDefault(sort = {"title"}, size = 5, direction = Sort.Direction.ASC) Pageable pageable) {
 
         Page<Product> products = productsService.getProductsList(pageable, min, max);
-        PageWrapper<Product> page = new PageWrapper<>(products, "/index");
+        PageWrapper<Product> page = new PageWrapper<>(products, "/");
         model.addAttribute("products", products.getContent());
         model.addAttribute("page", page);
         model.addAttribute("min", min);

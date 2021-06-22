@@ -22,17 +22,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     public void setUserService(UserService userService) {
         this.userService = userService;
     }
-//    private DataSource dataSource;
-
-//    @Autowired
-//    public void setDataSource(DataSource dataSource) {
-//        this.dataSource = dataSource;
-//    }
-//
-//    @Override
-//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.jdbcAuthentication().dataSource(dataSource);
-//    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -42,7 +31,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and().formLogin()
                 .loginPage("/login").permitAll()
                 .loginProcessingUrl("/authenticateUser")
-                .and().logout().logoutSuccessUrl("/index");
+                .and().logout().logoutSuccessUrl("/");
     }
 
     @Bean

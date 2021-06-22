@@ -36,6 +36,6 @@
 </table>
 <div th:replace="~{fragments/pager :: pager}"/>
 
-<a class="btn btn-success" th:href="@{'/addproduct/'}">Add new product</a>
+<a sec:authorize="hasRole('ADMIN')" class="btn btn-success" th:href="@{'/addproduct/'}">Add new product</a>
 </body>
 </html>

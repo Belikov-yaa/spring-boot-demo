@@ -21,7 +21,7 @@ public class User {
             columnDefinition = "TINYINT(1)")
     private boolean enabled;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
