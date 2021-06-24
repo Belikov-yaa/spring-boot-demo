@@ -4,12 +4,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import ru.geekbrains.springbootdemo.enities.Product;
+import ru.geekbrains.springbootdemo.entities.Product;
 
 @Repository
 public interface ProductJpaRepository extends JpaRepository<Product, Integer> {
 
-    Product findProductById(int id);
+    Product findProductById(Long id);
 
     Page<Product> findAllByOrderByTitleAsc(Pageable pageable);
 

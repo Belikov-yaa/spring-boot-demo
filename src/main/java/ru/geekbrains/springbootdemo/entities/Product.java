@@ -1,14 +1,17 @@
-package ru.geekbrains.springbootdemo.enities;
+package ru.geekbrains.springbootdemo.entities;
+
+import lombok.Data;
 
 import javax.persistence.*;
 
 @Entity
+@Data
 @Table(name = "product")
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
+    private Long id;
 
     @Column(name = "title")
     private String title;
@@ -17,27 +20,7 @@ public class Product {
 //    private double cost;
     private int price;
 
-    public int getId() {
-        return id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
-    public Product(int id, String title, int price) {
+    public Product(Long id, String title, int price) {
         this.id = id;
         this.title = title;
         this.price = price;

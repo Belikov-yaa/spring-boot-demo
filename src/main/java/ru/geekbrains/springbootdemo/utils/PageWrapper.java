@@ -1,4 +1,4 @@
-package ru.geekbrains.springbootdemo.controllers;
+package ru.geekbrains.springbootdemo.utils;
 
 import org.springframework.data.domain.Page;
 

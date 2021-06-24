@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import ru.geekbrains.springbootdemo.enities.Product;
+import ru.geekbrains.springbootdemo.entities.Product;
 import ru.geekbrains.springbootdemo.repositories.ProductJpaRepository;
 
 @Service
@@ -21,7 +21,7 @@ public class ProductService {
     public ProductService() {
     }
 
-    public Product getProductById(int id) {
+    public Product getProductById(Long id) {
         return productsRepository.findProductById(id);
     }
 
