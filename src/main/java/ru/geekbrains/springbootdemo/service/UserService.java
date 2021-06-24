@@ -39,7 +39,8 @@ public class UserService implements UserDetailsService {
         return roles.stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
     }
 
+    @Transactional
     public User findByUsername(String username) {
-        return userRepository.findByUserName(username);
+        return userRepository.findOneByUserName(username);
     }
 }
