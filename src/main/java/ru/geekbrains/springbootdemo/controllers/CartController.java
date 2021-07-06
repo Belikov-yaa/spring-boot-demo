@@ -44,13 +44,13 @@ public class CartController {
     @GetMapping("/add/{id}")
     public String addProductToCart(Model model, @PathVariable("id") Long id) {
         cart.addProductById(id);
-        return "redirect:/shop";
+        return "redirect:/index";
     }
 
     @GetMapping("/create_order")
     public String createOrder(Principal principal) {
         User user = userService.findByUsername(principal.getName());
         orderService.createOrderFromItems(user, cart.getItems());
-        return "redirect:/shop";
+        return "redirect:/index";
     }
 }
