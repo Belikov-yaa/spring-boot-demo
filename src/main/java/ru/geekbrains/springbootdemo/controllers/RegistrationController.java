@@ -48,7 +48,7 @@ public class RegistrationController {
         if (theBindingResult.hasErrors()) {
             return "registration-form";
         }
-        User existing = userService.findByUserName(userName);
+        User existing = userService.findByUsername(userName);
         if (existing != null) {
             // theSystemUser.setUserName(null);
             theModel.addAttribute("systemUser", theSystemUser);
