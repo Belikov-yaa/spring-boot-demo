@@ -6,4 +6,5 @@ import ru.geekbrains.springbootdemo.entities.Role;
 
 @Repository
 public interface RoleRepository extends JpaRepository<Role, Long> {
+    Role findOneByName(String roleName);
 }
