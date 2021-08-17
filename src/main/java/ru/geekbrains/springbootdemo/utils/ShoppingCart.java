@@ -19,6 +19,7 @@ public class ShoppingCart {
     private List<OrderItem> items;
 
     private ProductService productService;
+    private int totalCost;
 
     @Autowired
     public void setProductService(ProductService productService) {
@@ -39,5 +40,40 @@ public class ShoppingCart {
         OrderItem orderItem = new OrderItem();
         orderItem.setProduct(product);
         items.add(orderItem);
+    }
+
+    public void add(Product product) {
+        OrderItem orderItem = findOrderFromProduct(product);
+        if (orderItem == null) {
+            orderItem = new OrderItem();
+            orderItem.setProduct(product);
+            orderItem.setItemPrice(product.getPrice());
+            orderItem.setQuantity(0);
+            orderItem.setId(0L);
+            items.add(orderItem);
+        }
+        orderItem.setQuantity(orderItem.getQuantity() + 1);
+    }
+
+    public void remove(Product product) {
+        OrderItem orderItem = findOrderFromProduct(product);
+        if (orderItem == null) {
+            return;
+        }
+        items.remove(orderItem);
+    }
+
+    private void recalculate() {
+        totalCost = 0;
+        for (OrderItem o : items) {
+            o.setTotalPrice(o.getQuantity() * o.getProduct().getPrice());
+            totalCost += o.getTotalPrice();
+        }
+    }
+    private OrderItem findOrderFromProduct(Product product) {
+        return items.stream()
+                .filter(o -> o.getProduct().getId().equals(product.getId()))
+                .findFirst()
+                .orElse(null);
     }
 }
