@@ -1,8 +1,10 @@
 package ru.geekbrains.springbootdemo.entities;
 
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -14,10 +16,17 @@ public class Order {
     @Column(name = "id")
     private Long id;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<OrderItem> items;
 
     @ManyToOne
-    @JoinColumn(name = "username")
+    @JoinColumn(name = "user_id")
     private User user;
+
+    @Column(name = "price")
+    private Long price;
+
+    @Column(name = "create_at")
+    @CreationTimestamp
+    private LocalDateTime createAt;
 }
